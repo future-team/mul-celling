@@ -21,7 +21,8 @@
        position:'top'
        
  ``` 
--	使用实例：
+-	使用实例：    
+
  	jq版本:
  
  ```
@@ -33,7 +34,26 @@
             		  });
      })()
     
- ```
+ ```     
+-   react版本   
+   
+ 	```
+ 	import ForReact from '../../src/ForReact.js';
+     
+     export default class CellFRDemo extends Component {
+         constructor(props,context) {
+             super(props,context);
+         }
+         render() {
+             return (
+                <ForReact position='middle'>
+                    <div className="test" style={{width: '150px',height:'40px',border:'1px solid #f00'}}>测试好吧</div>
+                </ForReact>
+             );
+         }
+     }
+ 	```  
+ 	
  html:
  
  ```
@@ -52,24 +72,6 @@
      <!--[endif]-->
   
   ```
--	react版本   
-  
-	```
-	import ForReact from '../../src/ForReact.js';
-    
-    export default class CellFRDemo extends Component {
-        constructor(props,context) {
-            super(props,context);
-        }
-        render() {
-            return (
-               <ForReact position='middle'>
-                   <div className="test" style={{width: '150px',height:'40px',border:'1px solid #f00'}}>测试好吧</div>
-               </ForReact>
-            );
-        }
-    }
-	```
 	
   
 ## update
