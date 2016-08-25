@@ -8,13 +8,13 @@
  - test的div当滚动到顶部时吸顶：    
     初始状态：  
        
-   <img src="./img/fix1.png" />      
+   <img src="./img/fix1.png" height='300px'/>      
    滚动未到顶部时：     
    
-   <img src="./img/fix2.png" />       
+   <img src="./img/fix2.png" height='300px'/>       
    滚动到顶部及更多时，吸顶：  
    
-   <img src="./img/fix3.png" />
+   <img src="./img/fix3.png" height='300px'/>
 
 ## 使用
 
