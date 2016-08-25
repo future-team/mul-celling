@@ -1,5 +1,5 @@
 import React, { Component ,PropTypes} from 'react';
-import {ForReact} from '../../src/index.js';
+import ForReact from '../../src/ForReact.js';
 
 export default class CellFRDemo extends Component {
     constructor(props,context) {

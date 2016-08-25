@@ -3,11 +3,11 @@
  * */
 import React, {PropTypes,Component} from 'react';
 import ReactDom from 'react/lib/ReactDOM';
-import CellMin from './CellMixin.js';
+import CellMin from './utils/CellMixin.js';
 import '../css/cell-react.less';
-import options from './options.js';
+import options from './utils/options.js';
 @CellMin
-export default class CellFR extends Component{
+class ForReact extends Component{
     constructor(props,context) {
         super(props,context);
         this.uniquRef = this.getUniq();
@@ -17,7 +17,6 @@ export default class CellFR extends Component{
         this.isMiddle && this.addEvent();
     }
     render(){
-        this.test();
         return(
             <div ref={this.uniquRef} className={
                 this.getClass()
@@ -36,21 +35,19 @@ export default class CellFR extends Component{
      * 监听事件
      * */
     addEvent(){
+        let cellDom = ReactDom.findDOMNode(this.refs[this.uniquRef]);
         this.isReset = true;
-        let deTop = this.getDTop();
+        let deTop = this.getDTop(cellDom);
         document.addEventListener("scroll",()=>{
             let scrollTop = window.document.body.scrollTop;
             if (scrollTop >= deTop) {
-                this.isReset && this.addClass(this.obj,this.cls);
+                this.isReset && this.addClass(cellDom,this.cls);
                 this.isReset && (this.isReset = false)
             }else{
-                !this.isReset && this.removeClass(this.obj,this.cls);
+                !this.isReset && this.removeClass(cellDom,this.cls);
                 !this.isReset && (this.isReset = true);
             }
         })
     }
-    getDTop(){
-        this.obj = ReactDom.findDOMNode(this.refs[this.uniquRef]);
-        return this.obj.offsetTop;
-    };
 }
+module.exports = ForReact;

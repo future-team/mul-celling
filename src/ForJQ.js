@@ -2,21 +2,21 @@
  * jquery 适用
  * */
 import $ from 'jquery';
-import CellMixin from './CellMixin.js';
+import CellMixin from './utils/CellMixin.js';
 import '../css/cell-jq.less';
-import options from './options.js';
-import difClass from './className.js';
+import options from './utils/options.js';
+import difClass from './utils/className.js';
 @CellMixin
-export default
 class ForJQ {
     constructor(opts = {}) {
         this.opts = $.extend({}, options, opts);
         this.root = $(this.opts.root);
-        //测试minx方法
-        this.test();
         this.className = this.getCName(this.opts.position);
         this.switchPos();
     }
+    /**
+     * 判断是否middle
+     * */
     switchPos() {
         this.isMiddle(this.opts.position)?this.addEvent():this.addFix();
     }
@@ -28,14 +28,13 @@ class ForJQ {
         this.removeClass(this.root[0],this.className);
     }
     /**
-     * 重写addEvent方法
+     * addEvent
      * */
     addEvent() {
-        this.getDefaultStyle();
+        let deTop = this.getDTop(this.root[0]);
         this.isReset = true;
-        $(window).on('scroll',  ()=>{
-            console.log($(window).scrollTop());
-           if ($(window).scrollTop()>= this.deTop) {
+        $(window).on('scroll', ()=>{
+           if ($(window).scrollTop()>= deTop) {
                this.isReset && this.addFix();
                this.isReset && (this.isReset =false);
            }else{
@@ -44,11 +43,14 @@ class ForJQ {
             }
         })
     }
-    /**
-     * 原有样式
-     * */
-    getDefaultStyle() {
-        let root = this.root;
-        this.deTop = root.offset().top;
-    }
 }
+if(typeof(ForJQ) == 'undefined'){
+    window.ForJQ = exports['ForJQ'];
+}
+$.fn.extend({
+    ForJQ:function(opt){
+        new ForJQ(opt,this);
+        return this;
+    }
+});
+module.exports = ForJQ;

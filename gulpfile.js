@@ -41,7 +41,7 @@ gulp.task('demo-webpack', function(done) {
      "*": "http://localhost:9090"
      },*/
     filename: config.name+".js",
-    publicPath: "/dist/",
+    publicPath: "/example/dist/",
     //headers: { "X-Custom-Header": "yes" },
     stats: { colors: true }
   });
@@ -62,7 +62,7 @@ gulp.task('require-webpack', function(done) {
 gulp.task('min-webpack', function(done) {
 
   var wbpk = Object.create(webpackConfig);
-  wbpk.output.filename = config.name+'.min.js';
+  wbpk.output.filename = config.name+'-[name].min.js';
   wbpk.plugins = [
     new webpack.optimize.UglifyJsPlugin()
   ];
