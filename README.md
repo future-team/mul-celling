@@ -1,16 +1,80 @@
-# module-template
+# multiple-celling
 
-这是一个模块组件开发的脚手架项目，用于快速搭建模块开发项目。
+-	这是一个适用于jquery和react两种技术栈的celling组件     
+	是的没错，不管你是jquery还是react都可以使用该组件，而不需要分别引用不同的版本或者组件
+-	实现元素吸顶、吸底或者元素将要隐去时吸顶等效果	
 
 ## 使用
 
-- 下载此项目至本地，修改项目名称和package.json里的信息；
-- git remote rm origin
-- git remote add origin {你的仓库地址}  例如：git remote add origin git@code.dianpingoa.com:pc-trade-f2e/apollo-template-static.git
-- git fetch
-- git pull origin master
+-	使用时，jquery版本需要指定要处理的元素，fix的位置     
+	配置项如下：
+ 
+ ```
+       /**
+        * 要实现fix的元素选择器，如'.test'
+        * */
+        root:'',
+       /**
+        * fix的位置
+        * top,bottom,middle
+        * */
+       position:'top'
+       
+ ``` 
+-	使用实例：
+ 	jq版本:
+ 
+ ```
+ 	import {ForJQ} from '../../src/ForJQ.js';
+ 	(()=>{
+            $('.test').ForJQ({
+            			root:'.test',
+            			position:'middle'
+            		  });
+     })()
+    
+ ```
+ html:
+ 
+ ```
+ 
+    <div id="root" style="padding: 10px">
+        <div class="test" style="width: 150px;height:40px;border:1px solid #f00">测试好吧</div>
+    </div>
+    
+ ```
+- 	注：若要兼容ie8及以下版本请引入es5-shim。    
+   		在html中判断版本，ie9以下引入。例如：    
+  
+  ```
+     <!--[if lt IE 9] >
+     <script src="http://cdn.bootcss.com/es5-shim/4.5.9/es5-shim.js"></script>
+     <!--[endif]-->
+  
+  ```
+-	react版本   
+  
+	```
+	import ForReact from '../../src/ForReact.js';
+    
+    export default class CellFRDemo extends Component {
+        constructor(props,context) {
+            super(props,context);
+        }
+        render() {
+            return (
+               <ForReact position='middle'>
+                   <div className="test" style={{width: '150px',height:'40px',border:'1px solid #f00'}}>测试好吧</div>
+               </ForReact>
+            );
+        }
+    }
+	```
+	
+  
+## update
 
-- 全局安装smartDoc 用于生成文档
+   - 0.1.0及之前版本 init及修复 
 
 ## Command
 
@@ -22,5 +86,3 @@
 	#例子演示	
 	npm run demo	
 ```
-
-
